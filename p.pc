@@ -1,0 +1,28 @@
+#include <stdio>
+#include <stdlib>
+#include <conio>
+#include <math>
+#include <time>
+
+struct s1{
+	int i[10];
+	char c;
+};
+
+struct s2{
+	int j;
+	struct s1 s;
+};
+
+int main(void){
+	char c = 'A';
+	int matrix[10][10][3];
+	struct s2 mystruct;
+
+	matrix[0][1][2] = 5;
+
+	system("pause");
+
+	return 0;
+}
+

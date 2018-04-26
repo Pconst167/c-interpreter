@@ -1,0 +1,18 @@
+#include <stdio>
+#include <stdlib>
+#include <conio>
+#include <math>
+#include <time>
+
+
+
+int main(void){
+	int i;
+	scanf("%d", &i);
+	
+	if( (i-1) == 0) puts("loL");
+
+	
+
+	return 0;
+}

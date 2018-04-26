@@ -1,0 +1,85 @@
+#include <stdio>
+#include <math>
+#include <stdlib>
+#include <conio>
+
+const int ITERATIONS = 100;
+const int LIN = 70, COL = 150;
+
+void main(){
+	int plane[LIN][COL];
+	double r = 0, im = 0;
+	double y, x;
+	int k;
+	double x1 = -2.5, x2 = 2.5, y1 = -1, y2 = 1;
+	char c;
+	double dx, dy;
+	int i;
+	
+	do
+{
+	puts("mandelbrot set grapher");
+	puts("enter the coordinates for a rectangle, x1 = left, x2 = right, y1 = bottom, y2 = top");
+	puts("the mandelbrot set goes from x in [-2.5, 2.5] and y in [-1, 1]");	
+
+	printf("x1= ");
+	scanf("%lf", &x1);
+	printf("x2= ");
+	scanf("%lf", &x2);
+	printf("y1= ");
+	scanf("%lf", &y1);
+	printf("y2= ");
+	scanf("%lf", &y2);
+
+	puts("calculating...");
+
+	dx = (x2 - x1) / COL;
+	dy = (y2 - y1) / LIN;
+
+	for(y = 0; y < LIN; y++){
+		for(x = 0; x < COL; x++){
+			for(k = 0; k <= ITERATIONS; k++){
+				mandelbrot(r, im,  x1 + dx * x, y1 + dy * y, &r, &im);
+				if(absc(r, im) > 2) break;				
+			}
+			if(absc(r, im) > 2) plane[y][x] = ' ';
+			else plane[y][x] = 'o';
+			r = 0;
+			im = 0;
+		}
+	}
+
+	for(y = 0; y < LIN; y++){
+		printf("%9.6f", y2 - y * dy);
+		for(x = 0; x < COL; x++){
+			putchar(plane[y][x]);
+		}
+		putchar('\n');
+	}
+
+	
+	for(i = 0; i < 7; i++) putchar(' ');
+
+	for(i = 0; i < COL; i++)
+		if(i % 10 == 0) printf("%10.6f", x1 + dx * i);
+
+	printf("\npress e to exit or any other key to try again\n");
+	c = getch();
+
+} while( c != 'e');
+	
+}
+
+void multiply(double r1, double im1, double r2, double im2, double *r3, double *im3){
+	*r3 = r1*r2 - im1*im2;
+	*im3 = r1*im2 + r2*im1;
+}
+
+double absc(double r, double im){
+	return sqrt(r * r + im * im);
+}
+
+void mandelbrot(double r, double im, double cr, double cim, double *rr, double *rim){
+	*rr = r * r - im * im + cr;
+	*rim = 2 * r * im + cim;
+}
