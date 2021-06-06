@@ -1,0 +1,37 @@
+#include <stdio>
+#include <math>
+#include <stdlib>
+#include <conio>
+
+void main(){
+	float y[201][71];
+	float x;
+	char f[100];
+	int i, j;
+	int op;
+
+	do{
+		puts("Welcome to Grapher 3000!");
+		printf("f(x) = ");
+		gets(f);
+
+		for(x = 0.0; x <= 20.0; x = x + 0.1){
+			for(j = 0; j < 71; j++){
+				if(round(eval(f)) == 70 - j) y[round(x * 10)][j] = '*';
+				else y[round(x * 10)][j] = ' ';
+			}
+		}
+		
+		for(j = 0; j < 71; j++){
+			for(i = 0; i < 201; i++){
+				putchar(y[i][j]);
+			}
+			putchar('\n');
+		}
+
+		for(i = 0; i < 201; i++) if(i % 10 == 0) printf("%d", i/10); else putchar(' ');
+
+		putchar('\n');
+	} while(f[0]);
+	
+}
