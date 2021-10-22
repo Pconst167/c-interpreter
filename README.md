@@ -1,2 +1,2 @@
-# C_Interpreter
-A C interpreter with matrices and pointers
+# A C Interpreter
+A C interpreter with a good subset of the C language. Includes matrices and pointers.
